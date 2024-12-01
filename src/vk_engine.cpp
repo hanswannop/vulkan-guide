@@ -59,12 +59,16 @@ void VulkanEngine::run()
 
     // main loop
     while (!bQuit) {
-        // Handle events on queue
-        while (SDL_PollEvent(&e) != 0) {
-            // close the window when user alt-f4s or clicks the X button
-            if (e.type == SDL_QUIT)
-                bQuit = true;
-
+		// Handle events on queue
+		while (SDL_PollEvent(&e) != 0) {
+			// close the window when user alt-f4s or clicks the X button
+			if (e.type == SDL_QUIT)
+				bQuit = true;
+			if (e.type == SDL_KEYDOWN) {
+				if (e.key.keysym.sym == SDLK_ESCAPE) {
+					bQuit = true;
+				}
+			}
             if (e.type == SDL_WINDOWEVENT) {
                 if (e.window.event == SDL_WINDOWEVENT_MINIMIZED) {
                     stop_rendering = true;
