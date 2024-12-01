@@ -10,6 +10,8 @@
 #include <chrono>
 #include <thread>
 
+constexpr bool bUseValidationLayers = false;
+
 VulkanEngine* loadedEngine = nullptr;
 
 VulkanEngine& VulkanEngine::Get() { return *loadedEngine; }
@@ -65,6 +67,7 @@ void VulkanEngine::run()
 			if (e.type == SDL_QUIT)
 				bQuit = true;
 			if (e.type == SDL_KEYDOWN) {
+				fmt::print("Key pressed: {}\n", SDL_GetKeyName(e.key.keysym.sym));
 				if (e.key.keysym.sym == SDLK_ESCAPE) {
 					bQuit = true;
 				}
